@@ -10,7 +10,7 @@ import java.util.List;
 @Configuration
 public class AppConfig {
 
-    // ── CORS ─────────────────────────────────────────────────────────────────
+    // ── CORS ───────────────────────────────────────────────────────────
     @Value("${cors.allowed-origins}")
     private String allowedOrigins;
 
