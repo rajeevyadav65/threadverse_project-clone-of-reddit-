@@ -32,11 +32,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
-// ─── JWT Filter ──────────────────────────────────────────────────────────────
+// ─── JWT Filter ─────────────────────────────────────────────────────────
 @Component
 @RequiredArgsConstructor
 @Slf4j
-class JwtAuthFilter extends OncePerRequestFilter {
+public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
@@ -85,12 +85,12 @@ class UserDetailsServiceImpl implements UserDetailsService {
     }
 }
 
-// ─── Security Config ─────────────────────────────────────────────────────────
+// ─── Security Config ───────────────────────────────────────────────────────
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 @RequiredArgsConstructor
-class SecurityConfig {
+public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
     private final UserDetailsService userDetailsService;
@@ -111,6 +111,8 @@ class SecurityConfig {
                 .requestMatchers("/api/ai/moderate").permitAll()
                 .requestMatchers("/api/ai/sentiment").permitAll()
                 .requestMatchers("/api/ai/trending").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/v3/api-docs/**").permitAll()
                 // Everything else needs auth
                 .anyRequest().authenticated()
             )
