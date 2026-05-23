@@ -16,7 +16,7 @@ import java.util.Map;
 
 @RestControllerAdvice
 @Slf4j
-class GlobalExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(AppException.class)
     public ResponseEntity<Map<String, Object>> handleApp(AppException ex) {
